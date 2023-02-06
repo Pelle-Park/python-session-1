@@ -1,0 +1,107 @@
+
+
+    Start by creating a directory (folder) where all the exercise files will be placed.
+    You decide where, but a good place would be on your desktop, or in your document directory.
+
+    // mkdir unix_commands
+
+    Create a file with the name to_be_deleted.txt
+
+    // touch to_be_deleted.txt
+
+    delete the file to_be_deleted.txt
+
+    // rm to_be_deleted.txt
+ 
+    Move the 3 exercise files into this directory.
+
+    // mv ex1.acc ex1.dat orphans.sp .. 
+
+    Use a text editor (VS Code is good choise) to create a file called mycommands.txt 
+    where you write all commands and observations you do in the following exercises.
+    Use copy/paste to copy the commands. from the terminal to your text file.
+
+    // touch mycommands.txt
+
+    First list the files in the directory.
+
+    // ls
+
+    Copy ex1.acc to myfile.acc.
+
+    // cp ex1.acc myfile.acc
+
+    Look at the content of both files to ensure they are identical.
+
+    Copy ex1.dat to myfile.acc.
+
+    // cp ex1.dat myfile.acc
+
+    Check that the content of myfile.acc changed.
+
+    Delete myfile.acc.
+
+    // rm myfile.acc
+
+    Make a directory test and move the three files to it.
+
+    // mkdir test && mv ex1.acc ex1.dat orphans.sp ./test
+
+    Make a directory data and move the three files to that instead.
+
+    // mkdir data && mv test/ex1.acc test/ex1.dat test/orphans.sp ./data
+
+    Remove test directory.
+
+    // rmdir test/
+
+    Change directory to data and confirm that you succeded.
+
+    // cd data/ && ls 
+
+    Go back to the home directory or work directory afterwards.
+
+    // cd ..
+
+    Make three new directories “newtest” - one inside the other, like a russian doll.
+
+    // mkdir test && mkdir ./test/test && mkdir ./test/test/test
+
+    Move the data directory to the innermost “newtest” directory.
+
+    // mv data/ test/test/test/
+
+    Confirm that the three files are moved along with the data directory.
+
+    // ls test/test/test/data/
+
+    Copy the three files to your home (your top directory).
+
+    // cp test/test/test/data/{ex1.acc,ex1.dat,orphans.sp} ./
+
+    Remove all newtest directories and data in the with a single command.
+
+    // rm -r test/
+
+    Count the lines in ex1.acc and ex1.dat.
+
+    // awk 'END{print NR}' ex1.acc && awk 'END{print NR}' ex1.dat
+
+    Concatenate ex1.acc and ex1.dat in the file ex1.tot, i.e. copy the content of two files into one new file. 
+    Verify that all gene IDs comes first followed by numerical data.
+
+    // cat ex1.acc ex1.dat > ex1.tot
+
+    Merge/Paste ex1.acc and ex1.dat together in ex1.tot, thus destroying the old file.
+    Verify that corresponding gene IDs and numerical data are put on the same line. as the data.
+
+    // cat ex1.acc | tr -d '\r' > ex1.acc && cat ex1.dat | tr -d '\r' > ex1.dat
+    // paste ex1.acc ex1.dat > ex1.tot
+
+    Extract (cut) SwissProt ID and 3rd numerical data (column 1 and 5) from ex1.tot. Put results into a file ex1.res.
+
+    // cut -f 1,5 ex1.tot > ex1.res
+
+    Find the 3 SwisProt ID’s in ex1.res which have the largest number(s) in column 2, i.e. the top 3 entries.
+
+    // sort -k 2 -r ex1.res | head -3
